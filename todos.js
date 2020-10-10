@@ -1,8 +1,11 @@
 var listElement = document.querySelector('#app ul');
 var inputElement = document.querySelector('#app input');
 var btnElement = document.querySelector('#app button');
-
+var h1 = document.querySelector('#app h1');
+var h2 = document.querySelector('#app h2');
 var todos = JSON.parse(localStorage.getItem('list_todos')) || [];
+
+
 
 
 function renderTodo(){
@@ -19,7 +22,7 @@ function renderTodo(){
         var pos = todos.indexOf(todo);
         linkElement.setAttribute('onclick' , 'deleteTodo(' + pos + ')');
 
-        var linkText = document.createTextNode('X');
+        var linkText = document.createTextNode('concluído');
 
         linkElement.appendChild(linkText);
 
@@ -32,12 +35,24 @@ function renderTodo(){
 
 renderTodo();
 
+
 function addTodos(){
-    var todoText = inputElement.value;
-    todos.push(todoText);
-    inputElement.value = '';
-    renderTodo();
-    saveToStorage();
+    if(inputElement.value === ''){
+        h1.style.display = 'none';
+        h2.style.visibility = 'visible';
+        
+    }else{
+        h2.style.visibility = 'hidden';
+        h1.style.display = 'none';
+        var todoText = inputElement.value;
+        todos.push(todoText);
+        inputElement.value = '';
+        renderTodo();
+        saveToStorage();
+        console.log(todos.value);
+
+    }
+  
 
 }
 
