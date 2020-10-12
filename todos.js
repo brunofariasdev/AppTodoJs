@@ -37,24 +37,41 @@ renderTodo();
 
 
 function addTodos(){
-    if(inputElement.value === ''){
-        h1.style.display = 'none';
-        h2.style.visibility = 'visible';
+        function contar(what) {
+            return document.querySelectorAll(what).length;
+        }
         
-    }else{
-        h2.style.visibility = 'hidden';
-        h1.style.display = 'none';
-        var todoText = inputElement.value;
-        todos.push(todoText);
-        inputElement.value = '';
-        renderTodo();
-        saveToStorage();
-        console.log(todos.value);
-
-    }
+            let qtd = contar('li');
+            console.log(qtd);
+        
+    
+        if(inputElement.value === '' || qtd > 11 ){
+            h1.style.display = 'none';
+            h2.style.visibility = 'visible';
+            
+        }else if(qtd <= 11){
+            
+            h2.style.visibility = 'hidden';
+            h1.style.display = 'none';
+            var todoText = inputElement.value;
+            todos.push(todoText);
+            inputElement.value = '';
+            renderTodo();
+            saveToStorage();
+            console.log(todos.value);
+            
+    
+        }
+    
+    
   
 
 }
+
+
+
+
+
 
 btnElement.onclick = addTodos;
 
